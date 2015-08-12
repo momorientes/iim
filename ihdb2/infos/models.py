@@ -19,3 +19,7 @@ class Info(models.Model):
     def __str__(self):
         return "[{}] {}".format(self.id, self.subject)
 
+    def save(self, *args, **kwargs):
+        if self.priority > 10:
+            self.priority = 3
+        return super().save(*args, **kwargs)
