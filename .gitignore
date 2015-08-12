@@ -70,3 +70,5 @@ target/
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+
+ihdb2/db.sqlite3
