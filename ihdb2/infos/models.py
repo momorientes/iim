@@ -5,7 +5,8 @@ class Info(models.Model):
         ordering = ('-created', 'priority', )
 
     priority = models.IntegerField(
-            help_text='Priority from 1 to 10, 10 being highest',)
+            help_text='Priority from 1 to 10, 10 being highest',
+            default=1)
 
     subject = models.CharField(
             max_length=1024,
