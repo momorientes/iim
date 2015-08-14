@@ -16,7 +16,7 @@ class CustomIndexDashboard(Dashboard):
             column=1,
             title="MOTD",
             collapsible=False,
-            pre_content='<ul class="grp-listing-small">' + '<hr>'.join(
+            pre_content='<ul class="grp-listing-small">' + ''.join(
                 ['<li class="grp-row"><h5><strong>{}</strong></h5> {}</li>'.format(
                     obj.subject, linebreaksbr(obj.content))
                     for obj in MOTDMessage.objects.filter(display=True)]) + "</ul>")
