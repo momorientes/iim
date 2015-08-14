@@ -23,3 +23,17 @@ class Info(models.Model):
         if self.priority > 10:
             self.priority = 3
         return super().save(*args, **kwargs)
+
+class PhoneNumber(models.Model):
+    class Meta:
+        ordering = ('number',)
+
+    name = models.CharField(help_text="A fitting name", max_length=255)
+    number = models.CharField(help_text="The phone number", max_length=255)
+    comment = models.TextField(blank=True, null=True)
+
+    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "[{}] {}".format(self.number, self.name)

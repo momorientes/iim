@@ -3,6 +3,7 @@ import reversion
 
 # Register your models here.
 from .models import Info 
+from .models import PhoneNumber 
 
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
@@ -11,3 +12,8 @@ class InfoAdmin(reversion.VersionAdmin):
     search_fields = ('subject', 'details')
     list_filter = ('priority', 'created')
 
+@admin.register(PhoneNumber)
+class PhoneNumberAdmin(reversion.VersionAdmin):
+    list_display = ('name', 'number')
+    list_display_links = list_display
+    search_fields = ('name', 'number', 'comment')
