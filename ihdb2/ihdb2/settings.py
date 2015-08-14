@@ -115,3 +115,4 @@ STATIC_URL = '/static/'
 
 GRAPPELLI_INDEX_DASHBOARD = 'infos.admin_dashboard.CustomIndexDashboard'
 GRAPPELLI_ADMIN_TITLE = "Infodesk Information Management"
+GRAPPELLI_SWITCH_USER = True
