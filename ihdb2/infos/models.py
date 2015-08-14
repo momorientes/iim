@@ -15,7 +15,7 @@ class Info(TimeStampedModel):
     tag = models.CharField(
             choices = TAG_CHOICES,
             max_length=255,
-            help_text='Priority from 1 to 10, 10 being highest',
+            help_text='Assign a tag',
             default=1)
 
     subject = models.CharField(
@@ -43,4 +43,15 @@ class LinkList(TimeStampedModel):
     
     name = models.CharField(help_text="A fitting name", max_length=255)
     url = models.URLField()
+    display_on_dashboard = models.BooleanField(default=False, help_text="Display this URL on the dashboard")
 
+    def __str__(self):
+        return self.name
+
+class MOTDMessage(TimeStampedModel):
+    subject = models.CharField(max_length=255)
+    content = models.TextField()
+    display = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.subject

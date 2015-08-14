@@ -3,9 +3,10 @@ from django.utils.safestring import mark_safe
 import reversion
 
 # Register your models here.
-from .models import Info 
-from .models import PhoneNumber 
-from .models import LinkList 
+from .models import (Info,
+                     PhoneNumber,
+                     LinkList,
+                     MOTDMessage)
 
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
@@ -22,6 +23,11 @@ class PhoneNumberAdmin(reversion.VersionAdmin):
 
 @admin.register(LinkList)
 class LinkListAdmin(reversion.VersionAdmin):
-    list_display = ('name', 'display_url')
+    list_display = ('name', 'display_on_dashboard', 'display_url')
+    list_editable = ('display_on_dashboard',)
     def display_url(self, obj):
         return mark_safe('<a href="{}">{}</a>'.format(obj.url, obj.url))
+
+@admin.register(MOTDMessage)
+class MOTDAdmin(reversion.VersionAdmin):
+    list_display = ('subject',)

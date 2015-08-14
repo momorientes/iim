@@ -1,6 +1,6 @@
 Django<1.9
 psycopg2
 ipython
-django-flat-theme
 django-reversion
 django-model-utils
+django-grappelli

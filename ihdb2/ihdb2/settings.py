@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'flat',
+    'grappelli.dashboard',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'infos',
     'reversion',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -73,6 +75,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ihdb2.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+                                "django.template.context_processors.debug",
+                                "django.core.context_processors.request",
+                                "django.template.context_processors.i18n",
+                                "django.template.context_processors.media",
+                                "django.template.context_processors.static",
+                                "django.template.context_processors.tz",
+                                "django.contrib.messages.context_processors.messages")
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -102,3 +112,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GRAPPELLI_INDEX_DASHBOARD = 'infos.admin_dashboard.CustomIndexDashboard'
