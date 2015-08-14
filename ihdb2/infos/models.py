@@ -2,10 +2,15 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 class Info(TimeStampedModel):
+    TAG_CHOICES = (('1', 'foo'),
+                        ('2', 'bar'),
+                        ('3', 'baz'))
     class Meta:
-        ordering = ('-created', 'priority', )
+        ordering = ('-created', )
 
-    priority = models.IntegerField(
+    tag = models.CharField(
+            choices = TAG_CHOICES,
+            max_length=255,
             help_text='Priority from 1 to 10, 10 being highest',
             default=1)
 
@@ -17,11 +22,6 @@ class Info(TimeStampedModel):
 
     def __str__(self):
         return "[{}] {}".format(self.id, self.subject)
-
-    def save(self, *args, **kwargs):
-        if self.priority > 10:
-            self.priority = 3
-        return super().save(*args, **kwargs)
 
 class PhoneNumber(TimeStampedModel):
     class Meta:

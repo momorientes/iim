@@ -9,10 +9,10 @@ from .models import LinkList
 
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
-    list_display = ('priority', 'subject', 'created')
+    list_display = ('tag', 'subject', 'created')
     list_display_links = list_display
     search_fields = ('subject', 'details')
-    list_filter = ('priority', 'created')
+    list_filter = ('tag', 'created')
 
 @admin.register(PhoneNumber)
 class PhoneNumberAdmin(reversion.VersionAdmin):
