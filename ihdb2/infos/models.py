@@ -67,6 +67,8 @@ class MOTDMessage(TimeStampedModel):
 def add_user_to_all_group(sender, instance, **kwargs):
     """ check if saved user is in all_users group
     """
+    instance.is_staff = True
+    instance.save()
     (all_grp, created) = Group.objects.get_or_create(name='all_users')
     if created:
         # if 'all_users' group is created, add all active users to it.
