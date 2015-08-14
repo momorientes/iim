@@ -62,6 +62,11 @@ class MOTDMessage(TimeStampedModel):
     def __str__(self):
         return self.subject
 
+class Beamer(TimeStampedModel):
+    beamer = models.IntegerField(choices = ((1, 'Beamer 1'), (2, 'Beamer 2'), (3, 'Beamer 3')))
+    lent_to = models.CharField(max_length=255)
+    returned = models.BooleanField(default=False)
+
 
 @receiver(post_save, sender=User)
 def add_user_to_all_group(sender, instance, **kwargs):
@@ -78,3 +83,4 @@ def add_user_to_all_group(sender, instance, **kwargs):
     else:
         if instance not in all_grp.user_set.all() and instance.is_active:
             all_grp.user_set.add(instance)
+

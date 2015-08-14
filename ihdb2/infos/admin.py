@@ -6,7 +6,8 @@ import reversion
 from .models import (Info,
                      PhoneNumber,
                      LinkList,
-                     MOTDMessage)
+                     MOTDMessage,
+                     Beamer)
 
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
@@ -31,3 +32,10 @@ class LinkListAdmin(reversion.VersionAdmin):
 @admin.register(MOTDMessage)
 class MOTDAdmin(reversion.VersionAdmin):
     list_display = ('subject',)
+
+@admin.register(Beamer)
+class BeamerAdmin(reversion.VersionAdmin):
+    list_display = ('beamer', 'returned', 'lent_to', 'created')
+    list_display_links = list_display
+    list_filter = ('returned', 'beamer')
+    search_fields = ('lent_to',)
