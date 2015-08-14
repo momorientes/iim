@@ -47,7 +47,7 @@ class CustomIndexDashboard(Dashboard):
                 {
                     'title': obj.name,
                     'url': obj.url,
-                    'external': True,
+                    'external': False,
                 } for obj in LinkList.objects.all() if obj.display_on_dashboard
             ]
         ))
