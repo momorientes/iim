@@ -2,9 +2,12 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 class Info(TimeStampedModel):
-    TAG_CHOICES = (('1', 'foo'),
-                        ('2', 'bar'),
-                        ('3', 'baz'))
+    TAG_CHOICES = (
+        ('1', 'info'),
+        ('2', 'TODO'),
+        ('3', 'general information'),
+        ('4', 'issues')
+    )
     class Meta:
         ordering = ('-created', )
 
