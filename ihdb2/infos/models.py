@@ -6,8 +6,8 @@ class Info(TimeStampedModel):
         ('1', 'info'),
         ('2', 'TODO'),
         ('3', 'general information'),
-        ('4', 'issues')
-        ('5', 'misc')
+        ('4', 'issues'),
+        ('5', 'misc'),
     )
     class Meta:
         ordering = ('-created', )
