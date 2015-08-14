@@ -3,3 +3,4 @@ psycopg2
 ipython
 django-flat-theme
 django-reversion
+django-model-utils
