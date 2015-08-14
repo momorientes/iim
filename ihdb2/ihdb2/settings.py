@@ -114,3 +114,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 GRAPPELLI_INDEX_DASHBOARD = 'infos.admin_dashboard.CustomIndexDashboard'
+GRAPPELLI_ADMIN_TITLE = "Infodesk Information Management"
