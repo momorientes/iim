@@ -17,7 +17,7 @@ class Info(CreatedModifiedByModelMixin, TimeStampedModel):
     )
 
     class Meta:
-        ordering = ('-created', )
+        ordering = ('-modified', )
 
     tag = models.CharField(
         choices=TAG_CHOICES,
