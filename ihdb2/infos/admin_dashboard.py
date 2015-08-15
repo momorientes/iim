@@ -19,7 +19,7 @@ class CustomIndexDashboard(Dashboard):
             pre_content='<ul class="grp-listing-small">' + ''.join(
                 ['<li class="grp-row"><h5><strong>{}</strong></h5> {}</li>'.format(
                     obj.subject, linebreaksbr(obj.content))
-                    for obj in MOTDMessage.objects.filter(display=True)]) + "</ul>")
+                    for obj in MOTDMessage.objects.filter(display=True).order_by('-modified')]) + "</ul>")
         )
 
         self.children.append(modules.AppList(
@@ -48,7 +48,7 @@ class CustomIndexDashboard(Dashboard):
                     'title': obj.name,
                     'url': obj.url,
                     'external': False,
-                } for obj in LinkList.objects.all() if obj.display_on_dashboard
+                } for obj in LinkList.objects.filter(display_on_dashboard=True).order_by('-modified')
             ]
         ))
 
