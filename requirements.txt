@@ -4,3 +4,4 @@ ipython
 django-reversion
 django-model-utils
 django-grappelli
+django-extensions

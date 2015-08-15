@@ -9,33 +9,39 @@ from .models import (Info,
                      MOTDMessage,
                      Beamer)
 
+
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
-    list_display = ('tag', 'subject', 'created')
+    list_display = ('tag', 'subject', 'created', 'created_by', 'modified_by')
     list_display_links = list_display
     search_fields = ('subject', 'details')
     list_filter = ('tag', 'created')
 
+
 @admin.register(PhoneNumber)
 class PhoneNumberAdmin(reversion.VersionAdmin):
-    list_display = ('name', 'number')
+    list_display = ('name', 'number', 'created_by', 'modified_by')
     list_display_links = list_display
     search_fields = ('name', 'number', 'comment')
 
+
 @admin.register(LinkList)
 class LinkListAdmin(reversion.VersionAdmin):
-    list_display = ('name', 'display_on_dashboard', 'display_url')
+    list_display = ('name', 'display_on_dashboard', 'display_url', 'created_by', 'modified_by')
     list_editable = ('display_on_dashboard',)
+
     def display_url(self, obj):
         return mark_safe('<a href="{}">{}</a>'.format(obj.url, obj.url))
 
+
 @admin.register(MOTDMessage)
 class MOTDAdmin(reversion.VersionAdmin):
-    list_display = ('subject',)
+    list_display = ('subject', 'created_by', 'modified_by')
+
 
 @admin.register(Beamer)
 class BeamerAdmin(reversion.VersionAdmin):
-    list_display = ('beamer', 'returned', 'lent_to', 'created')
+    list_display = ('beamer', 'returned', 'lent_to', 'created', 'created_by', 'modified_by')
     list_display_links = list_display
     list_filter = ('returned', 'beamer')
     search_fields = ('lent_to',)

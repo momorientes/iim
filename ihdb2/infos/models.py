@@ -4,8 +4,10 @@ from django.contrib.auth.models import Group, User
 from django.dispatch import receiver
 from model_utils.models import TimeStampedModel
 
+from .mixins import CreatedModifiedByModelMixin
 
-class Info(TimeStampedModel):
+
+class Info(CreatedModifiedByModelMixin, TimeStampedModel):
     TAG_CHOICES = (
         ('1', 'info'),
         ('2', 'TODO'),
@@ -33,7 +35,7 @@ class Info(TimeStampedModel):
         return "[{}] {}".format(self.id, self.subject)
 
 
-class PhoneNumber(TimeStampedModel):
+class PhoneNumber(CreatedModifiedByModelMixin, TimeStampedModel):
     class Meta:
         ordering = ('number',)
 
@@ -45,7 +47,7 @@ class PhoneNumber(TimeStampedModel):
         return "[{}] {}".format(self.number, self.name)
 
 
-class LinkList(TimeStampedModel):
+class LinkList(CreatedModifiedByModelMixin, TimeStampedModel):
     name = models.CharField(help_text="A fitting name", max_length=255)
     url = models.URLField()
     display_on_dashboard = models.BooleanField(default=False, help_text="Display this URL on the dashboard")
@@ -54,7 +56,7 @@ class LinkList(TimeStampedModel):
         return self.name
 
 
-class MOTDMessage(TimeStampedModel):
+class MOTDMessage(CreatedModifiedByModelMixin, TimeStampedModel):
     subject = models.CharField(max_length=255)
     content = models.TextField()
     display = models.BooleanField(default=False)
@@ -62,8 +64,9 @@ class MOTDMessage(TimeStampedModel):
     def __str__(self):
         return self.subject
 
-class Beamer(TimeStampedModel):
-    beamer = models.IntegerField(choices = ((1, 'Beamer 1'), (2, 'Beamer 2'), (3, 'Beamer 3')))
+
+class Beamer(CreatedModifiedByModelMixin, TimeStampedModel):
+    beamer = models.IntegerField(choices=((1, 'Beamer 1'), (2, 'Beamer 2'), (3, 'Beamer 3')))
     lent_to = models.CharField(max_length=255)
     returned = models.BooleanField(default=False)
 
@@ -83,4 +86,3 @@ def add_user_to_all_group(sender, instance, **kwargs):
     else:
         if instance not in all_grp.user_set.all() and instance.is_active:
             all_grp.user_set.add(instance)
-
