@@ -12,7 +12,7 @@ from .models import (Info,
 
 @admin.register(Info)
 class InfoAdmin(reversion.VersionAdmin):
-    list_display = ('tag', 'subject', 'created', 'created_by', 'modified_by')
+    list_display = ('tag', 'subject', 'modified', 'created', 'created_by', 'modified_by')
     list_display_links = list_display
     search_fields = ('subject', 'details')
     list_filter = ('tag', 'created')
